@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Button = styled.button`
   background: ${(props) => (props.primary ? "#3e7eee" : "white")};
   color: ${(props) => (props.primary ? "white" : "black")};
-  padding: 10px 20px;
+  padding: ${props => props.inputPadding || "10px 30px"};
   border-color: #3e7eee;
   outline: none;
   font-size: 14px;

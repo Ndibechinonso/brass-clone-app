@@ -51,7 +51,7 @@ export default function Login(props) {
                 </div>
                 <div>
                     {" "}
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className="form">
                         <div className="form-details">
                             {!emailRegex.test(values.email) && values.email.length > 0 && (
                                 <p id="emailError">Please enter a valid email address</p>
@@ -90,13 +90,13 @@ export default function Login(props) {
                         {submitted && values.password && values.email ? (
                             <Link to="/home">
                                 {" "}
-                                <Button primary className="login-button">
+                                <Button primary inputPadding="15px 137px">
                                     Log me in
                 </Button>
                             </Link>
                         ) : (
                             <Button
-                                primary
+                                primary inputPadding="15px 137px"
                                 disabled={!values.email || values.password.length < 8}
                                 className="login-button notAllowed"
                             >

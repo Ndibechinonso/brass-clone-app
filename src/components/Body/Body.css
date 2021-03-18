@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 .intro {
   display: flex;
   flex-direction: row;
@@ -8,6 +13,7 @@
   padding-left: 20px;
   margin-bottom: 30px;
 }
+
 .coming-soon {
   border: 1px solid rgb(230, 248, 243);
   background-color: rgb(230, 248, 243);
@@ -18,6 +24,7 @@
   font-weight: 500;
   padding: 5px 12px;
 }
+
 p {
   font-size: 14px;
   font-weight: 400;
@@ -29,8 +36,7 @@ p {
 }
 
 svg {
-  width: 20px;
-  color: #3e7eee;
+
   background-image: linear-gradient(270deg, rgba(226, 236, 253, 0), #e2ecfd);
   align-self: center;
   margin-right: 10px;
@@ -43,6 +49,7 @@ svg {
   letter-spacing: 1px;
   margin-top: 25px;
 }
+
 .header2 {
   width: 300px;
   color: rgb(51, 61, 71);
@@ -54,9 +61,11 @@ svg {
   color: rgb(108, 120, 132);
   margin-bottom: 50px;
 }
+
 strong {
   color: rgb(51, 61, 71);
 }
+
 .helpLine {
   display: flex;
   flex-direction: row;
@@ -64,39 +73,103 @@ strong {
   padding-bottom: 0;
   margin-top: 30px;
 }
+
 .loan {
   align-self: flex-end;
   font-weight: 500;
   margin-left: 5px;
 }
+
 .flexContainer {
     display: flex;
     flex-direction: row;
 }
+
 img {
     width: 100%;
     object-fit: cover;
 }
 
-@media only screen and (max-width: 1276px) {
+.imgDiv {
+  align-self: center;
+}
 
+@media only screen and (max-width: 1276px) {
     .bodyCard {
         padding-right: 50px;
         padding-left: 40px;
       }
-
 }
 
-@media only screen and (max-width: 755px) {
-
+@media only screen and (max-width: 800px) {
     .flexContainer {
         flex-direction: column;
     }
     .bodyCard {
         margin: auto;
+        text-align: center;
       }
     .imgDiv {
         padding-left: 20px;
     }
+    .bodyCard {
+      padding-bottom: 10px; 
+    }
 
+}
+@media only screen and (max-width: 575px) {
+    .intro {
+      flex-direction: column;
+    border-radius: 0;
+    border: none;
+    background-color: rgb(230, 248, 243);
+    text-align: center;
+    width: 100%;
+    }
+
+    .loan {
+      align-self: center;
+      margin-top: 0;
+      padding-bottom: 10px;
+    }
+
+    .coming-soon {
+      margin-bottom: 0;
+    }
+
+    .header1 {
+      margin-top: 0;
+    }
+
+    .bodyCard{
+      padding-top: 0;
+    }
+}
+
+@media only screen and (max-width: 500px) { 
+  svg {
+    width: 5px;
+  }
+
+  .bodyCard{
+    padding: 0;
+    max-width: 100vw;
+  }
+
+  .body-container {
+    max-width: 100vw ;
+  }
+
+  .intro {
+    width: 100vw;
+  }
+
+  .header2{
+   width: 80vw;
+   font-size: 32px;
+  }
+  
+  .accountAct {
+    width: 83vw;
+  }
 }
