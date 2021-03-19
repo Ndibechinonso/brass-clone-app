@@ -9,18 +9,32 @@ export default function Login(props) {
         email: "",
         password: "",
     });
-    const [submitted, setSubmitted] = useState(false);
+
+    // state to monitor email validation warning
+    const [error, setError] = useState('')
+
+    // state to monitor first time email input is changed
+    const [press, setPress] = useState(false)
+
+
+    // monitors the email input to give a corresponding error message
+    useEffect(() => {
+        if (press) {
+            !values.email ? setError('Please enter your email address') :
+                !emailRegex.test(values.email) ? setError('Please enter a valid email') : setError('');
+        }
+    }, [values.email, press])
+
+
     const handleEmailInputChange = (event) => {
         event.persist();
         setValues((values) => ({
             ...values,
             email: event.target.value,
         }));
+        setPress(true)
     };
-    // const [email, setEmail] = useState('')
-    // useEffect(() => {
-    // const handleEmailChange = () => setEmail(handleEmailInputChange)
-    // })
+
     const handlePasswordInputChange = (event) => {
         event.persist();
         setValues((values) => ({
@@ -31,17 +45,19 @@ export default function Login(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSubmitted(true);
     };
+
     const [passwordShown, setPasswordShown] = useState(false);
 
     const togglePasswordVisiblity = () => {
         setPasswordShown(passwordShown ? true : false);
     };
-
+   
+    // regex for password validation
     const emailRegex = RegExp(
         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{&}~-]+@[a-zA-Z0-9-]+.(?:\.[a-zA-Z0-9-]+)*$/
     );
+
     return (
         <div>
             <NavBar button="button" />
@@ -53,9 +69,8 @@ export default function Login(props) {
                     {" "}
                     <form onSubmit={handleSubmit} className="form">
                         <div className="form-details">
-                            {!emailRegex.test(values.email) && values.email.length > 0 && (
-                                <p id="emailError">Please enter a valid email address</p>
-                            )}
+                            <p id="emailError">{error}</p>
+
                             <input
                                 type="email"
                                 name="email"
@@ -87,17 +102,17 @@ export default function Login(props) {
                             </p>
                         </div>
 
-                        {submitted && values.password && values.email ? (
+                        {  values.password.length >= 8 && emailRegex.test(values.email) ? (
                             <Link to="/home">
                                 {" "}
-                                <Button primary inputPadding="15px 137px">
+                                <Button className="login-button" primary inputPadding="15px 137px">
                                     Log me in
                 </Button>
                             </Link>
                         ) : (
                             <Button
                                 primary inputPadding="15px 137px"
-                                disabled={!values.email || values.password.length < 8}
+                                disabled={!emailRegex.test(values.email) || values.password.length < 8}
                                 className="login-button notAllowed"
                             >
                                 Log me in
